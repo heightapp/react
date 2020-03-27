@@ -15,12 +15,12 @@ import invariant from 'shared/invariant';
 
 import {getParentSuspenseInstance} from './ReactDOMHostConfig';
 
-const randomKey = Math.random()
-  .toString(36)
-  .slice(2);
-const internalInstanceKey = '__reactInternalInstance$' + randomKey;
-const internalEventHandlersKey = '__reactEventHandlers$' + randomKey;
-const internalContainerInstanceKey = '__reactContainere$' + randomKey;
+// const randomKey = Math.random()
+//   .toString(36)
+//   .slice(2);
+const internalInstanceKey = '__reactInternalInstance$';
+const internalEventHandlersKey = '__reactEventHandlers$';
+const internalContainerInstanceKey = '__reactContainere$';
 
 export function precacheFiberNode(hostInst, node) {
   node[internalInstanceKey] = hostInst;

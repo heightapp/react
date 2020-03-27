@@ -843,6 +843,11 @@ function commitUnmount(
       return;
     }
     case HostComponent: {
+      // HACK: detach fiber references from DOM
+      if (current.stateNode) {
+        current.stateNode.__reactEventHandlers$ = null;
+        current.stateNode.__reactInternalInstance$ = null;
+      }
       if (enableDeprecatedFlareAPI) {
         unmountDeprecatedResponderListeners(current);
         beforeRemoveInstance(current.stateNode);
@@ -889,6 +894,14 @@ function commitUnmount(
       }
       if (enableScopeAPI) {
         safelyDetachRef(current);
+      }
+      return;
+    }
+    case HostText: {
+       // HACK: detach fiber references from DOM
+      if (current.stateNode) {
+        current.stateNode.__reactEventHandlers$ = null;
+        current.stateNode.__reactInternalInstance$ = null;
       }
       return;
     }
